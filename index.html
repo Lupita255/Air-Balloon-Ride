@@ -3,14 +3,26 @@
     <script src="p5.dom.min.js"></script>
     <script src="p5.sound.min.js"></script>
     <script src="./p5.play.js"></script>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/8.2.8/firebase-app.js"></script>
+   <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDUQO376ezakmh73gYvDPlmkdsPfgaSjgY",
+    authDomain: "air-balloon-ride-6f9be.firebaseapp.com",
+    databaseURL: "https://air-balloon-ride-6f9be-default-rtdb.firebaseio.com",
+    projectId: "air-balloon-ride-6f9be",
+    storageBucket: "air-balloon-ride-6f9be.appspot.com",
+    messagingSenderId: "530174813533",
+    appId: "1:530174813533:web:107c71168e76508f3b74b4"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8">
 
