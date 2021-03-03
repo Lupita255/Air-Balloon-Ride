@@ -1,6 +1,4 @@
-var balloon,balloonImg;
-var database;
-var height;
+var balloon,bg;
 
 function preload(){
    bg =loadImage("background.png");
@@ -9,10 +7,11 @@ function preload(){
 
 function setup() {
   createCanvas(500,500);
-  database = firebase.database();
+  database=firebase.database();
 
-  balloon=createSprite(250,650);
-  balloon.addAnimation("hotAirBalloon",balloonImg);
+  balloon=createSprite(100,600,20,20);
+  balloon.addAnimation("balloon",balloonImg);
+  balloon.scale=0.4;
 
   var balloonHeight=database.ref('balloon/height');
   balloonHeight.on("value",readHeight, showError);
@@ -20,24 +19,21 @@ function setup() {
 
 function draw() {
   background(bg);
+  fill("black");
+  textSize(20);
+  text("Use arrow keys to move Hot Air Balloon",100,200)
 
   if(keyDown(LEFT_ARROW)){
-    updateHeight(-10,0);
-    balloon.addAnimation("hotAirBalloon",balloonImg);
+    balloon.x = balloon.x-10
   }
   else if(keyDown(RIGHT_ARROW)){
-    updateHeight(10,0);
-    balloon.addAnimation("hotAirBalloon",balloonImg);
+    balloon.x = balloon.x+10
   }
   else if(keyDown(UP_ARROW)){
-    updateHeight(0,-10);
-    balloon.addAnimation("hotAirBalloon",balloonImg);
-    balloon.scale=balloon.scale -0.005;
+    balloon.y = balloon.y-10
   }
   else if(keyDown(DOWN_ARROW)){
-    updateHeight(0,+10);
-    balloon.addAnimation("hotAirBalloon",balloonImg);
-    balloon.scale=balloon.scale+0.005;
+    balloon.y = balloon.y+10
   }
 
   drawSprites();
@@ -54,6 +50,7 @@ function updateHeight(x,y){
 
 function readHeight(data){
   height = data.val();
+  console.log(height.x);
   balloon.x = height.x;
   balloon.y = height.y;
 }
